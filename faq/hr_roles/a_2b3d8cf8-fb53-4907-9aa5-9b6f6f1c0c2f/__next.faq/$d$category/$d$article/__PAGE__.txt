@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[73128,["/_next/static/chunks/3uk4zulyt1bj3.js","/_next/static/chunks/13766lbyomzy1.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/2okuvjxjh4a5t.js","/_next/static/chunks/2sk3ya8hrihr8.js","/_next/static/chunks/1-ykipo-0ciqy.js"],"default"]
+3:I[97367,["/_next/static/chunks/3uk4zulyt1bj3.js","/_next/static/chunks/13766lbyomzy1.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/2okuvjxjh4a5t.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"categoryId":"hr_roles","articleId":"a_2b3d8cf8-fb53-4907-9aa5-9b6f6f1c0c2f"}],[["$","script","script-0",{"src":"/_next/static/chunks/2sk3ya8hrihr8.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/1-ykipo-0ciqy.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"8Jm8-csu9oKCc2X9jC6Sr"}
+5:null

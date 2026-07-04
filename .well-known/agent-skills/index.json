@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agentskills.io/schemas/agent-skills-discovery-v0.2.0.json",
+  "skills": [
+    {
+      "name": "site-navigation",
+      "type": "markdown",
+      "description": "Navigate public SAIGON EDTECH website resources for product, pricing, FAQ, contact, privacy, and terms information.",
+      "url": "https://sgedtech.com/.well-known/agent-skills/site-navigation.md",
+      "sha256": "cb6277a5bd717873f0744167c1ed03179be384ade0ea5b0b29227a7f580d30ac"
+    },
+    {
+      "name": "contact-sales",
+      "type": "markdown",
+      "description": "Help users contact SAIGON EDTECH for demos, sales questions, or SEMS implementation inquiries through public channels.",
+      "url": "https://sgedtech.com/.well-known/agent-skills/contact-sales.md",
+      "sha256": "eb7fe8f0377cfeafb32dc6b11a06be46594ad7f42a6afc435e82b9a11bccc6b4"
+    }
+  ]
+}

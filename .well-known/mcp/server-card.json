@@ -1,0 +1,34 @@
+{
+  "serverInfo": {
+    "name": "SAIGON EDTECH public website",
+    "version": "0.1.0"
+  },
+  "description": "Static public discovery card for the SAIGON EDTECH marketing site. No remote MCP tool transport is currently exposed.",
+  "transports": [],
+  "capabilities": {
+    "tools": false,
+    "resources": true,
+    "prompts": false
+  },
+  "resources": [
+    {
+      "name": "Homepage markdown",
+      "uri": "https://sgedtech.com/index.md",
+      "mimeType": "text/markdown"
+    },
+    {
+      "name": "API catalog",
+      "uri": "https://sgedtech.com/.well-known/api-catalog",
+      "mimeType": "application/linkset+json"
+    },
+    {
+      "name": "Agent skills index",
+      "uri": "https://sgedtech.com/.well-known/agent-skills/index.json",
+      "mimeType": "application/json"
+    }
+  ],
+  "contact": {
+    "email": "it@sgedtech.com",
+    "url": "https://sgedtech.com/contact"
+  }
+}

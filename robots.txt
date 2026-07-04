@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
+Sitemap: https://sgedtech.com/sitemap.xml
+
+# Disallow common duplicate query params
+Disallow: /*?*
+
+# Disallow technical paths (adjust if needed)
+Disallow: /api/

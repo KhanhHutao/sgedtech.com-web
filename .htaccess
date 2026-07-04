@@ -1,0 +1,70 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve Markdown for Agents when clients explicitly ask for text/markdown.
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^$ /index.md [L,T=text/markdown,E=markdown_response:1]
+
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^index\.html$ /index.md [L,T=text/markdown,E=markdown_response:1]
+
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^vi/?$ /vi/index.md [L,T=text/markdown,E=markdown_response:1]
+
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^vi/index\.html$ /vi/index.md [L,T=text/markdown,E=markdown_response:1]
+
+  # 1. Bỏ trailing slash (dấu gạch chéo ở cuối URL)
+  # Ví dụ: /contact/ -> /contact
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+  # 2. Xóa đuôi .html trên thanh địa chỉ 
+  # Ví dụ: /contact.html -> /contact
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /+(.*)\.html\ HTTP
+  RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+  # 3. Nếu request là một file hoặc thư mục có thật thì phục vụ luôn
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 4. Khi truy cập /contact, tự động đọc nội dung file /contact.html dưới local
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# 5. Xử lý trang lỗi 404 bằng trang 404.html của Next.js sinh ra
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  AddType text/markdown .md
+  AddCharset UTF-8 .md
+  AddType application/json .json
+  AddCharset UTF-8 .json
+</IfModule>
+
+<IfModule mod_headers.c>
+  SetEnvIf Request_URI "^/(index\.html)?$" agent_home=1
+  SetEnvIf Request_URI "^/vi/?(index\.html)?$" agent_home=1
+
+  Header merge Vary Accept env=agent_home
+  Header add Link "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"" env=agent_home
+  Header add Link "</docs/api.md>; rel=\"service-doc\"; type=\"text/markdown\"" env=agent_home
+  Header add Link "</.well-known/agent-skills/index.json>; rel=\"service-desc\"; type=\"application/json\"" env=agent_home
+  Header add Link "</auth.md>; rel=\"service-doc\"; type=\"text/markdown\"" env=agent_home
+  Header add Link "</.well-known/mcp/server-card.json>; rel=\"service-desc\"; type=\"application/json\"" env=agent_home
+
+  Header set Content-Type "text/markdown; charset=utf-8" "expr=%{CONTENT_TYPE} =~ m#^text/markdown#"
+  Header set X-Markdown-Tokens "approx=520" "expr=%{CONTENT_TYPE} =~ m#^text/markdown#"
+</IfModule>
+
+<Files "api-catalog">
+  <IfModule mod_mime.c>
+    ForceType application/linkset+json
+  </IfModule>
+  <IfModule mod_headers.c>
+    Header set Content-Type "application/linkset+json; charset=utf-8"
+  </IfModule>
+</Files>
